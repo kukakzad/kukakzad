@@ -32,7 +32,7 @@ app.post('/webhook/', function (req, res) {
 });
 
 function sendTextMessage(sender, text) {
-  messageData = {
+  var messageData = {
     text:text
   }
   request({
