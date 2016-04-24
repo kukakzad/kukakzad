@@ -43,7 +43,7 @@ app.post('/webhook/', function (req, res) {
       	check = 2;
       }
       else if (check == 2){
-      	sendTextMessage(sender, "เสือกจังตะ https://www.google.co.th/search?q=" + text);
+      	sendTextMessage(sender, "เสือกจังตะ https://www.google.co.th/search?q=" + text + "&source=lnms&tbm=isch");
       	check = 0;
       }
       else {
