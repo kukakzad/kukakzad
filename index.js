@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var request = require('request');
 var token = "CAAIaDUQwTC8BADTtSlCUX9mHLtqyJt5qHZCLN7dkoGSS8kOU6QZCkYBuwagX9FeZB8sveiiAJZA9bxjfJ2S7kvwUR0YuLDDlaXQkTu7HSQApsm5ThtIXvzZAig5WztZCYPZAAcp63nypyVx5v82AAOKqjEuR5VKpHKj9phZB0OVhrrVqbPitJcf4tscHn0cZBJZAYZD";
 var app = express();
+var check = 0;
 app.use(bodyParser.json());
 
 app.set('port', (process.env.PORT || 5000));
@@ -31,9 +32,14 @@ app.post('/webhook/', function (req, res) {
       }
       else if (text == 'อยากฟังเพลง'){
       	sendTextMessage(sender, "เพลงอะไรค่ะ");
+      	check = 1;
+      }
+      else if (check == 1){
+      	sendTextMessage(sender, "https://www.youtube.com/results?search_query=" + text);
+      	check = 0;
       }
       else {
-      	sendTextMessage(sender, "https://www.youtube.com/results?search_query=" + text);
+      	sendTextMessage(sender, "ดิฉันไม่เข้าใจที่คุณพูดค่ะ");
       }
     }
   }
