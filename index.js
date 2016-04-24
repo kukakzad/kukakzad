@@ -1,5 +1,8 @@
 var express = require('express');
+var bodyParser = require('body-parser')
+var token = "CAAIaDUQwTC8BADTtSlCUX9mHLtqyJt5qHZCLN7dkoGSS8kOU6QZCkYBuwagX9FeZB8sveiiAJZA9bxjfJ2S7kvwUR0YuLDDlaXQkTu7HSQApsm5ThtIXvzZAig5WztZCYPZAAcp63nypyVx5v82AAOKqjEuR5VKpHKj9phZB0OVhrrVqbPitJcf4tscHn0cZBJZAYZD";
 var app = express();
+app.use(bodyParser.json());
 
 app.set('port', (process.env.PORT || 5000));
 app.get('/', function (req, res) {
@@ -22,10 +25,32 @@ app.post('/webhook/', function (req, res) {
       var text = event.message.text;
       // Handle a text message from this sender
       console.log(text);
+      sendTextMessage(sender, "Text received, echo: "+ text.substring(0, 200));
     }
   }
   res.sendStatus(200);
 });
+
+function sendTextMessage(sender, text) {
+  messageData = {
+    text:text
+  }
+  request({
+    url: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: {access_token:token},
+    method: 'POST',
+    json: {
+      recipient: {id:sender},
+      message: messageData,
+    }
+  }, function(error, response, body) {
+    if (error) {
+      console.log('Error sending message: ', error);
+    } else if (response.body.error) {
+      console.log('Error: ', response.body.error);
+    }
+  });
+}
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
