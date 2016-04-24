@@ -35,6 +35,9 @@ app.post('/webhook/', function (req, res) {
       else if (text == 'ควย'){
       	sendTextMessage(sender, "ไปขอพ่อคุณดูซิ");
       }
+      else {
+      	sendTextMessage(sender, "ดิฉันไม่เข้าใจที่คุณพูด");
+      }
     }
   }
   res.sendStatus(200);
