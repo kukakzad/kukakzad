@@ -29,6 +29,9 @@ app.post('/webhook/', function (req, res) {
       if (text == '...'){
       	sendTextMessage(sender, "ว่าไง");
       }
+      else if (text == 'อยากฟังเพลง'){
+      	sendTextMessage(sender, "เปิด YOUTUBE ซิ https://www.youtube.com");
+      }
     }
   }
   res.sendStatus(200);
