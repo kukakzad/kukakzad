@@ -30,13 +30,10 @@ app.post('/webhook/', function (req, res) {
       	sendTextMessage(sender, "ว่าไง");
       }
       else if (text == 'อยากฟังเพลง'){
-      	sendTextMessage(sender, "เปิด YOUTUBE ซิ https://www.youtube.com");
-      }
-      else if (text == 'ควย'){
-      	sendTextMessage(sender, "ไปขอพ่อคุณดูซิ");
+      	sendTextMessage(sender, "เพลงอะไรค่ะ");
       }
       else {
-      	sendTextMessage(sender, "ดิฉันไม่เข้าใจที่คุณพูด");
+      	sendTextMessage(sender, "https://www.youtube.com/results?search_query=" + text);
       }
     }
   }
