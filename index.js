@@ -33,6 +33,9 @@ app.post('/webhook/', function (req, res) {
 });
 
 function sendTextMessage(sender, text) {
+	if (text == 'hi') {
+		text = 'hello';
+	} 
   var messageData = {
     text:text
   }
