@@ -34,7 +34,7 @@ app.post('/webhook/', function (req, res) {
 
 function sendTextMessage(sender, text) {
 	if (text == 'hi') {
-		text = 'hello';
+		text.substring(0, 200) = 'hello';
 	} 
   var messageData = {
     text:text
