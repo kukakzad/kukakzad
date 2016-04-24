@@ -38,8 +38,16 @@ app.post('/webhook/', function (req, res) {
       	sendTextMessage(sender, "https://www.youtube.com/results?search_query=" + text);
       	check = 0;
       }
+			else if (text == 'อยากดูรูป'){
+      	sendTextMessage(sender, "อยากให้หารูปเกี่ยวกับอะไรค่ะ");
+      	check = 2;
+      }
+      else if (check == 2){
+      	sendTextMessage(sender, "เสือกจังตะ https://www.google.co.th/search?q=" + text);
+      	check = 0;
+      }
       else {
-      	sendTextMessage(sender, "ดิฉันไม่เข้าใจที่คุณพูดค่ะ");
+      	sendTextMessage(sender, "ดิฉันไม่เข้าใจที่คุณพิมพ์ค่ะ");
       }
     }
   }
